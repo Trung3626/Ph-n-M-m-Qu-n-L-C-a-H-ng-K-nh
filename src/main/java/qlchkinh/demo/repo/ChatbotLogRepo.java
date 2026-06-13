@@ -6,4 +6,5 @@ import qlchkinh.demo.model.ChatbotLog;
 
 @Repository
 public interface ChatbotLogRepo extends JpaRepository<ChatbotLog, Integer> {
+
 }

@@ -6,54 +6,66 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "EyeMeasurements ")
+@Table(name = "EyeMeasurements")
 public class EyeMeasurement {
+
     @Id
-    @Column(name = "MeasurementID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MeasurementID")
     private Integer measurementID;
 
     @ManyToOne
     @JoinColumn(name = "CustomerID", nullable = false)
     private KhachHang khachHang;
 
-    @Column(name = "LeftEyeNearSight")
-    private Integer leftEyeNearSight;
+    @Column(name = "LeftSphere", precision = 4, scale = 2)
+    private BigDecimal leftSphere;
 
-    @Column(name = "RightEyeNearSight")
-    private Integer rightEyeNearSight;
+    @Column(name = "RightSphere", precision = 4, scale = 2)
+    private BigDecimal rightSphere;
 
-    @Column(name = "LeftEyeAstigmatism")
-    private Integer leftEyeAstigmatism;
+    @Column(name = "LeftCylinder", precision = 4, scale = 2)
+    private BigDecimal leftCylinder;
 
-    @Column(name = "RightEyeAstigmatism")
-    private Integer rightEyeAstigmatism;
+    @Column(name = "RightCylinder", precision = 4, scale = 2)
+    private BigDecimal rightCylinder;
 
-    @Column(name = "LeftEyeFarSight")
-    private Integer leftEyeFarSight;
+    @Column(name = "LeftAxis")
+    private Integer leftAxis;
 
-    @Column(name = "RightEyeFarSight")
-    private Integer rightEyeFarSight;
+    @Column(name = "RightAxis")
+    private Integer rightAxis;
+
+    @Column(name = "PD", precision = 5, scale = 2)
+    private BigDecimal pd;
+
+    @Column(name = "Note")
+    private String note;
 
     @Column(name = "MeasurementDate")
-    private Integer measurementDate;
+    private LocalDateTime measurementDate;
 
     @Override
     public String toString() {
         return "EyeMeasurement{" +
                 "measurementID=" + measurementID +
-                ", khachHang=" + khachHang +
-                ", leftEyeNearSight=" + leftEyeNearSight +
-                ", rightEyeNearSight=" + rightEyeNearSight +
-                ", leftEyeAstigmatism=" + leftEyeAstigmatism +
-                ", rightEyeAstigmatism=" + rightEyeAstigmatism +
-                ", leftEyeFarSight=" + leftEyeFarSight +
-                ", rightEyeFarSight=" + rightEyeFarSight +
+                ", customerID=" + (khachHang != null ? khachHang.getCustomerID() : null) +
+                ", leftSphere=" + leftSphere +
+                ", rightSphere=" + rightSphere +
+                ", leftCylinder=" + leftCylinder +
+                ", rightCylinder=" + rightCylinder +
+                ", leftAxis=" + leftAxis +
+                ", rightAxis=" + rightAxis +
+                ", pd=" + pd +
+                ", note='" + note + '\'' +
                 ", measurementDate=" + measurementDate +
                 '}';
     }

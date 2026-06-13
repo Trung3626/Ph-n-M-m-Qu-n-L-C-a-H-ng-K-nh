@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,9 +16,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "Invoices")
 public class HoaDon {
+
     @Id
-    @Column(name = "InvoiceID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "InvoiceID")
     private Integer invoiceID;
 
     @ManyToOne
@@ -27,16 +31,19 @@ public class HoaDon {
     private NguoiDung nguoiDung;
 
     @Column(name = "InvoiceDate")
-    private Integer invoiceDate;
+    private LocalDateTime invoiceDate;
 
-    @Column(name = "TotalAmount")
-    private Integer totalAmount = 0;
+    @Column(name = "TotalAmount", precision = 18, scale = 2)
+    private BigDecimal totalAmount = BigDecimal.ZERO;
 
-    @Column(name = "DiscountPercent")
-    private Integer discountPercent = 0;
+    @Column(name = "DiscountPercent", precision = 5, scale = 2)
+    private BigDecimal discountPercent = BigDecimal.ZERO;
 
-    @Column(name = "FinalAmount")
-    private Integer finalAmount = 0;
+    @Column(name = "DiscountAmount", precision = 18, scale = 2)
+    private BigDecimal discountAmount = BigDecimal.ZERO;
+
+    @Column(name = "FinalAmount", precision = 18, scale = 2)
+    private BigDecimal finalAmount = BigDecimal.ZERO;
 
     @Column(name = "PaymentMethod")
     private String paymentMethod;
@@ -48,11 +55,12 @@ public class HoaDon {
     public String toString() {
         return "HoaDon{" +
                 "invoiceID=" + invoiceID +
-                ", khachHang=" + khachHang +
-                ", nguoiDung=" + nguoiDung +
+                ", customerID=" + (khachHang != null ? khachHang.getCustomerID() : null) +
+                ", userID=" + (nguoiDung != null ? nguoiDung.getUserID() : null) +
                 ", invoiceDate=" + invoiceDate +
                 ", totalAmount=" + totalAmount +
                 ", discountPercent=" + discountPercent +
+                ", discountAmount=" + discountAmount +
                 ", finalAmount=" + finalAmount +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", status='" + status + '\'' +

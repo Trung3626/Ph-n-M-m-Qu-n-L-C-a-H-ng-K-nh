@@ -13,19 +13,24 @@ import lombok.Setter;
 @Entity
 @Table(name = "Categories")
 public class LoaiKinh {
-    @Id
-    @Column(name = "CategoryID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cateID;
 
-    @Column(name = "CategoryName", nullable = false)
-    private String cateName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CategoryID")
+    private Integer categoryID;
+
+    @Column(name = "CategoryName", nullable = false, unique = true)
+    private String categoryName;
+
+    @Column(name = "Description")
+    private String description;
 
     @Override
     public String toString() {
         return "LoaiKinh{" +
-                "cateID=" + cateID +
-                ", cateName='" + cateName + '\'' +
+                "categoryID=" + categoryID +
+                ", categoryName='" + categoryName + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

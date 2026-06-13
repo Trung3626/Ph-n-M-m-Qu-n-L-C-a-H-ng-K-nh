@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,9 +15,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "InvoiceDetails")
 public class CTHD {
+
     @Id
-    @Column(name = "InvoiceDetailID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "InvoiceDetailID")
     private Integer invoiceDetailID;
 
     @ManyToOne
@@ -29,18 +32,18 @@ public class CTHD {
     @Column(name = "Quantity", nullable = false)
     private Integer quantity;
 
-    @Column(name = "UnitPrice", nullable = false)
-    private Integer unitPrice;
+    @Column(name = "UnitPrice", nullable = false, precision = 18, scale = 2)
+    private BigDecimal unitPrice;
 
-    @Column(name = "Subtotal", nullable = false)
-    private Integer subtotal;
+    @Column(name = "Subtotal", nullable = false, precision = 18, scale = 2)
+    private BigDecimal subtotal;
 
     @Override
     public String toString() {
         return "CTHD{" +
                 "invoiceDetailID=" + invoiceDetailID +
-                ", hoaDon=" + hoaDon +
-                ", sanPham=" + sanPham +
+                ", invoiceID=" + (hoaDon != null ? hoaDon.getInvoiceID() : null) +
+                ", productID=" + (sanPham != null ? sanPham.getProductID() : null) +
                 ", quantity=" + quantity +
                 ", unitPrice=" + unitPrice +
                 ", subtotal=" + subtotal +

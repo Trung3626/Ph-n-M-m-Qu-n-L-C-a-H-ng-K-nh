@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Ho Ten</td>
+        <td>So dien thoai</td>
+        <td>Dia chi</td>
+        <td>Độ cận</td>
+        <td>Độ loạn</td>
+        <td>Độ viễn</td>
+        <td>Thao tác</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c : ${xe}">
+        <td th:text="${c.maXe}"></td>
+        <td th:text="${c.tenXe}"></td>
+        <td th:text="${c.mauSac}"></td>
+        <td th:text="${c.NSX}"></td>
+        <td th:text="${c.giaBan}"></td>
+        <td th:text="${c.maHangXe}"></td>
+
+        <td><a th:href="@{|/delete?id=${c.maXe}|}">Xoa</a>
+            <a th:href="@{|/detail?id=${c.maXe}|}">Chi tiet</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

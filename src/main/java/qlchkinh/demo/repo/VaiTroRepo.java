@@ -6,4 +6,5 @@ import qlchkinh.demo.model.VaiTro;
 
 @Repository
 public interface VaiTroRepo extends JpaRepository<VaiTro, Integer> {
+
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,9 +15,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "Suppliers")
 public class NhaCungCap {
+
     @Id
-    @Column(name = "SupplierID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SupplierID")
     private Integer supplierID;
 
     @Column(name = "SupplierName", nullable = false)
@@ -30,6 +33,9 @@ public class NhaCungCap {
     @Column(name = "Address")
     private String address;
 
+    @Column(name = "CreatedAt")
+    private LocalDateTime createdAt;
+
     @Override
     public String toString() {
         return "NhaCungCap{" +
@@ -38,6 +44,7 @@ public class NhaCungCap {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

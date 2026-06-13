@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,9 +15,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "Customers")
 public class KhachHang {
+
     @Id
-    @Column(name = "CustomerID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CustomerID")
     private Integer customerID;
 
     @Column(name = "FullName", nullable = false)
@@ -31,7 +34,7 @@ public class KhachHang {
     private String address;
 
     @Column(name = "CreatedAt")
-    private Integer createdAt;
+    private LocalDateTime createdAt;
 
     @Override
     public String toString() {

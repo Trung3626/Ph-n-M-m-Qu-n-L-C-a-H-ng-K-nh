@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,9 +16,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "Products")
 public class SanPham {
+
     @Id
-    @Column(name = "ProductID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ProductID")
     private Integer productID;
 
     @Column(name = "ProductName", nullable = false)
@@ -32,21 +36,50 @@ public class SanPham {
     @Column(name = "Brand")
     private String brand;
 
-    @Column(name = "Price", nullable = false)
-    private Integer price;
+    @Column(name = "ImportPrice", precision = 18, scale = 2)
+    private BigDecimal importPrice = BigDecimal.ZERO;
+
+    @Column(name = "SellingPrice", nullable = false, precision = 18, scale = 2)
+    private BigDecimal sellingPrice;
 
     @Column(name = "Quantity")
     private Integer quantity = 0;
 
+    @Column(name = "MinQuantity")
+    private Integer minQuantity = 5;
+
     @Column(name = "ImageURL")
     private String imageURL;
 
-    @Column(name = "Description")
+    @Column(name = "Description", columnDefinition = "NVARCHAR(MAX)")
     private String description;
 
     @Column(name = "Status")
     private String status;
 
     @Column(name = "CreatedAt")
-    private Integer createdAt;
+    private LocalDateTime createdAt;
+
+    @Column(name = "UpdatedAt")
+    private LocalDateTime updatedAt;
+
+    @Override
+    public String toString() {
+        return "SanPham{" +
+                "productID=" + productID +
+                ", productName='" + productName + '\'' +
+                ", categoryID=" + (loaiKinh != null ? loaiKinh.getCategoryID() : null) +
+                ", supplierID=" + (nhaCungCap != null ? nhaCungCap.getSupplierID() : null) +
+                ", brand='" + brand + '\'' +
+                ", importPrice=" + importPrice +
+                ", sellingPrice=" + sellingPrice +
+                ", quantity=" + quantity +
+                ", minQuantity=" + minQuantity +
+                ", imageURL='" + imageURL + '\'' +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

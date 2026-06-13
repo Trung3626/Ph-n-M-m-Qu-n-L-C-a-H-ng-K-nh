@@ -13,12 +13,13 @@ import lombok.Setter;
 @Entity
 @Table(name = "Roles")
 public class VaiTro {
+
     @Id
-    @Column(name = "RoleID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "RoleID")
     private Integer roleID;
 
-    @Column(name = "RoleName")
+    @Column(name = "RoleName", nullable = false, unique = true)
     private String roleName;
 
     @Override

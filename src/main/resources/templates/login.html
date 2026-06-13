@@ -111,13 +111,6 @@
             background: #0846aa;
         }
 
-        .message {
-            margin-top: 18px;
-            text-align: center;
-            color: #0b57d0;
-            font-size: 14px;
-        }
-
         .image-box {
             flex: 1;
             background: url("https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
@@ -147,7 +140,6 @@
         <div class="logo">
             <div class="logo-icon">👓</div>
             <h2>QUẢN LÝ<br>CỬA HÀNG KÍNH</h2>
-            <p>Đăng nhập để tiếp tục</p>
         </div>
 
         <form action="/account/login" method="post">
@@ -168,11 +160,6 @@
 
             <button type="submit">Đăng nhập</button>
         </form>
-
-        <p class="message" th:if="${u}">
-            Bạn vừa nhập username:
-            <span th:text="${u}"></span>
-        </p>
     </div>
 
     <div class="image-box"></div>
